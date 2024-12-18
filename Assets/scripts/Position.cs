@@ -1,11 +1,16 @@
+using TMPro;
 using UnityEngine;
 
 public class Position : MonoBehaviour
 {
-	public Slots slots;
+	public Card card;
+	public TMP_Text positionText;
 
-	private void Awake()
+	private void Update()
 	{
-		slots = FindFirstObjectByType<Slots>();
+		if (card != null)
+		{
+			positionText.text = card.ImageString[0].ToString();
+		}
 	}
 }

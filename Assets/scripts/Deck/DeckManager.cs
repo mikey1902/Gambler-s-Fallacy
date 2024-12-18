@@ -19,6 +19,8 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         CreateNewDeck();
+
+        RefreshDeck();
     }
 
     void CreateNewDeck()
@@ -78,6 +80,11 @@ public class DeckManager : MonoBehaviour
     void RemoveCardFromDeck(Card card)
     {
         staticDeck.Remove(card);
+    }
+
+    public void RemoveCardFromRoll(int i)
+    {
+        rollingDeck.RemoveAt(i);
     }
 
     public void RefreshDeck()

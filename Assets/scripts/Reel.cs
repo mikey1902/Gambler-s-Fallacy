@@ -3,14 +3,22 @@ using UnityEngine;
 
 public class Reel : MonoBehaviour
 {
-	public List<GameObject> positionsInReel = new List<GameObject>();
+	public List<Position> positionsInReel = new List<Position>();
 	public bool spin;
 	public int speed = 1500;
+	public DeckManager deckManager;
 
 	void Start()
 	{
 		spin = false;
+		deckManager = FindFirstObjectByType<DeckManager>();
+
+		foreach (Transform img in transform)
+		{
+			positionsInReel.Add(img.gameObject.GetComponent<Position>());
+		}
 	}
+
 	void Update()
 	{
 		if (spin)
@@ -27,29 +35,21 @@ public class Reel : MonoBehaviour
 		}
 	}
 
-	public void RandomReelSet()
+	public void RandomizeReel()
 	{
-		List<int> reelPos = new List<int>();
-
-		reelPos.Add(200);
-		reelPos.Add(100);
-		reelPos.Add(0);
-		reelPos.Add(-100);
-		reelPos.Add(-200);
-		reelPos.Add(-300);
-
-		foreach (Transform img in transform)
+		for (int i = 0; i < positionsInReel.Count; i++)
 		{
-			int rand = Random.Range(0, reelPos.Count);
-
-			img.transform.position = new Vector2(img.transform.position.x, reelPos[rand] + transform.parent.GetComponent<RectTransform>().transform.position.y);
-
-			if(reelPos[rand] != -300)
-			{
-				positionsInReel.Add(img.gameObject);
-			}
-
-			reelPos.RemoveAt(rand);
+			int cardIndex = Random.Range(0, deckManager.rollingDeck.Count);
+			positionsInReel[i].card = deckManager.rollingDeck[cardIndex];
+			deckManager.RemoveCardFromRoll(cardIndex);
 		}
+	}
+	public void EnableReel()
+	{
+		gameObject.SetActive(true);
+	}
+	public void DisableReel()
+	{
+		gameObject.SetActive(false);
 	}
 }
