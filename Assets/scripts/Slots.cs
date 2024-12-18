@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 
 public class Slots : MonoBehaviour
 {
+	private DeckManager deckManager;
     public Reel[] reels;
     public InputActionReference spin;
     bool startSpin;
 
     private void Start()
     {
+		deckManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DeckManager>();
         startSpin = false; 
     }
 
@@ -24,6 +26,7 @@ public class Slots : MonoBehaviour
 	
 	private void SpinSlot(InputAction.CallbackContext obj)
 	{
+		deckManager.RefreshDeck();
 		startSpin = true;
 		StartCoroutine(Spinning());
 	}
