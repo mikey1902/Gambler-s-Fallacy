@@ -4,16 +4,15 @@ using UnityEngine.InputSystem;
 
 public class Slots : MonoBehaviour
 {
-	private DeckManager deckManager;
     public Reel[] reels;
+	public GameObject[] slotGrid;
     public InputActionReference spin;
     bool startSpin;
 
     private void Start()
     {
-		deckManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<DeckManager>();
-        startSpin = false; 
-    }
+        startSpin = false;
+}
 
 	private void OnEnable()
 	{
@@ -26,13 +25,13 @@ public class Slots : MonoBehaviour
 	
 	private void SpinSlot(InputAction.CallbackContext obj)
 	{
-		deckManager.RefreshDeck();
-		startSpin = true;
-		StartCoroutine(Spinning());
+		if (startSpin == false) {StartCoroutine(Spinning());}
 	}
 
 	IEnumerator Spinning()
 	{
+		startSpin = true;
+
 		foreach (Reel reel in reels)
 		{
 			reel.spin = true;
@@ -46,5 +45,19 @@ public class Slots : MonoBehaviour
 		}
 
         startSpin = false;
+		ResultCheck();
+	}
+
+	private void ResultCheck()
+	{
+		Debug.Log("sigma");
+		foreach (Reel reel in reels)
+		{
+			for (int i = 0; i < reel.positionsInReel.Count; i++)
+			{
+
+				Debug.Log(reel.positionsInReel[i]);
+			}
+		}
 	}
 }
