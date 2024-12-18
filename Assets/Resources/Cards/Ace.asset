@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a4aa07804230045bd88761f44a49f7, type: 3}
   m_Name: Ace
   m_EditorClassIdentifier: 
-  ImageString: 
+  ImageString: aceImage
   actionType: 0
-  value: 0
+  value: 4
