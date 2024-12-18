@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Reel : MonoBehaviour
 {
+	public List<GameObject> positionsInReel = new List<GameObject>();
 	public bool spin;
 	public int speed = 1500;
 
@@ -42,6 +43,11 @@ public class Reel : MonoBehaviour
 			int rand = Random.Range(0, reelPos.Count);
 
 			img.transform.position = new Vector2(img.transform.position.x, reelPos[rand] + transform.parent.GetComponent<RectTransform>().transform.position.y);
+
+			if(reelPos[rand] != -300)
+			{
+				positionsInReel.Add(img.gameObject);
+			}
 
 			reelPos.RemoveAt(rand);
 		}

@@ -277,6 +277,7 @@ MonoBehaviour:
   - {fileID: 493968920}
   - {fileID: 256761541}
   - {fileID: 1642546948}
+  slotGrid: []
   spin: {fileID: -2063396545380377467, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &107675430
 GameObject:
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &256761542
@@ -461,7 +463,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -120, y: 0}
-  m_SizeDelta: {x: 100, y: 300}
+  m_SizeDelta: {x: 100, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &278209028
 GameObject:
@@ -885,7 +887,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 300}
+  m_SizeDelta: {x: 100, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493968920
 MonoBehaviour:
@@ -899,6 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &493968921
@@ -1559,6 +1562,7 @@ GameObject:
   - component: {fileID: 1064763605}
   - component: {fileID: 1064763607}
   - component: {fileID: 1064763606}
+  - component: {fileID: 1064763608}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1623,6 +1627,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064763604}
   m_CullTransparentMesh: 1
+--- !u!114 &1064763608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064763604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8e05078ed068145a74f6ea2e5d5be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: {fileID: 0}
 --- !u!1 &1202904137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,6 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &1642546949
@@ -2061,7 +2079,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 120, y: 0}
-  m_SizeDelta: {x: 100, y: 300}
+  m_SizeDelta: {x: 100, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1936812434
 GameObject:

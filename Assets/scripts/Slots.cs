@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 public class Slots : MonoBehaviour
 {
     public Reel[] reels;
+	public GameObject[] slotGrid;
     public InputActionReference spin;
     bool startSpin;
 
     private void Start()
     {
-        startSpin = false; 
-    }
+        startSpin = false;
+}
 
 	private void OnEnable()
 	{
@@ -24,12 +25,13 @@ public class Slots : MonoBehaviour
 	
 	private void SpinSlot(InputAction.CallbackContext obj)
 	{
-		startSpin = true;
-		StartCoroutine(Spinning());
+		if (startSpin == false) {StartCoroutine(Spinning());}
 	}
 
 	IEnumerator Spinning()
 	{
+		startSpin = true;
+
 		foreach (Reel reel in reels)
 		{
 			reel.spin = true;
@@ -43,5 +45,19 @@ public class Slots : MonoBehaviour
 		}
 
         startSpin = false;
+		ResultCheck();
+	}
+
+	private void ResultCheck()
+	{
+		Debug.Log("sigma");
+		foreach (Reel reel in reels)
+		{
+			for (int i = 0; i < reel.positionsInReel.Count; i++)
+			{
+
+				Debug.Log(reel.positionsInReel[i]);
+			}
+		}
 	}
 }
