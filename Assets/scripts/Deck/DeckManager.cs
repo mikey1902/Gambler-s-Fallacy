@@ -1,94 +1,103 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using System;
 public class DeckManager : MonoBehaviour
 {
 
-    private Object[] cards;
-    public List<Card> staticDeck = new List<Card>();
+    public Dictionary<string, int> symbolOdds = new Dictionary<string, int>
+    {
+        { "Ten", 22 },
+        { "Jack", 20 },
+        { "Queen", 18 },
+        { "King", 18 },
+        { "Ace", 15 },
+        { "Scatter", 7 }
+    };
+    private System.Random random = new System.Random();
 
-    /// <summary>
-    /// Use rollingDeck to generate the roll with, 
-    /// delete cards that are chosen for the reals so they arent used in subsequent reals. 
-    /// before every roll, use RefreshDeck to reset rollingDeck for the roll and any updated cards from the shop or broken cards etc.
-    /// </summary>
-    public List<Card> rollingDeck = new List<Card>();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CreateNewDeck();
-
-        RefreshDeck();
+        RefreshOdds();
     }
 
-    void CreateNewDeck()
+    void RefreshOdds()
     {
-        cards = Resources.LoadAll("Cards", typeof(Card));
-
-        foreach (Card card in cards)
+        symbolOdds = new Dictionary<string, int>
         {
-            switch (card.ImageString)
-            {
-                case "tenImage":
-                    for (int i = 0; i <= 25; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
-                case "jackImage":
-                    for (int i = 0; i <= 20; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
-                case "queenImage":
-                    for (int i = 0; i <= 15; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
-                case "kingImage":
-                    for (int i = 0; i <= 15; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
-                case "aceImage":
-                    for (int i = 0; i <= 10; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
-                case "scatterImage":
+            { "Ten", 22 },
+            { "Jack", 20 },
+            { "Queen", 18 },
+            { "King", 18 },
+            { "Ace", 15 },
+            { "Scatter", 7 }
+        };
+    }
 
-                    for (int i = 0; i <= 3; i++)
-                    {
-                        staticDeck.Add(card);
-                    }
-                    break;
+    public string GetRandomIcon()
+    {
+        List<KeyValuePair<string
+        , int>> cumulativeOdds = new List<KeyValuePair<string, int>>();
+        int cumulativeSum = 0;
+
+        foreach (var symbol in symbolOdds)
+        {
+            cumulativeSum += symbol.Value;
+            cumulativeOdds.Add(new KeyValuePair<string, int>(symbol.Key, cumulativeSum));
+        }
+
+        int randomNumber = random.Next(1, cumulativeSum + 1);
+
+        foreach (var symbol in cumulativeOdds)
+        {
+            if (randomNumber <= symbol.Value)
+            {
+                return symbol.Key;
             }
+        }
+
+        return null;
+    }
+
+    public void AdjustOdds(string cardName, int increaseAmount)
+    {
+        symbolOdds[cardName] += increaseAmount;
+
+        int totalOdds = 0;
+        foreach (var odds in symbolOdds.Values)
+        {
+            totalOdds += odds;
+        }
+
+        if (totalOdds > 100)
+        {
+            int excess = totalOdds - 100;
+
+            List<string> keysToAdjust = new List<string>();
+            foreach (var key in symbolOdds.Keys)
+            {
+                if (key != cardName)
+                {
+                    keysToAdjust.Add(key);
+                }
+            }
+
+            int reductionPerCard = excess / keysToAdjust.Count;
+            foreach (var key in keysToAdjust)
+            {
+                int newOdds = symbolOdds[key] - reductionPerCard;
+                symbolOdds[key] = Mathf.Max(newOdds, 0);
+            }
+        }
+        LogSymbolOdds();
+    }
+    public void LogSymbolOdds()
+    {
+        Debug.Log("Symbol Odds:");
+        foreach (var symbol in symbolOdds)
+        {
+            Debug.Log($"{symbol.Key}: {symbol.Value}%");
         }
     }
 
-    void AddCardToDeck(Card card)
-    {
-        staticDeck.Add(card);
-    }
-
-    void RemoveCardFromDeck(Card card)
-    {
-        staticDeck.Remove(card);
-    }
-
-    public void RemoveCardFromRoll(int i)
-    {
-        rollingDeck.RemoveAt(i);
-    }
-
-    public void RefreshDeck()
-    {
-        rollingDeck = staticDeck;
-    }
 }

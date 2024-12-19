@@ -277,6 +277,7 @@ MonoBehaviour:
   - {fileID: 493968920}
   - {fileID: 256761541}
   - {fileID: 1642546948}
+  slotGrid: []
   spin: {fileID: -2063396545380377467, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &107675430
 GameObject:
@@ -378,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 217949057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.05, y: -4.28, z: 90.00001}
+  m_LocalPosition: {x: 7, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -416,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &256761542
@@ -976,6 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &493968921
@@ -1998,7 +2001,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 11
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2395,6 +2398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7202bcdf0bb24478f906a4c26184a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionsInReel: []
   spin: 0
   speed: 1500
 --- !u!114 &1642546949

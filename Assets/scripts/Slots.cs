@@ -9,9 +9,11 @@ public class Slots : MonoBehaviour
 	public GameObject[] slotGrid;
     public InputActionReference spin;
     bool startSpin;
+	public DeckManager deckManager;
 
     private void Start()
     { 
+		deckManager = FindFirstObjectByType<DeckManager>();
         startSpin = false;
 	}
 

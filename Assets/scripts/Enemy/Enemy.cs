@@ -3,28 +3,36 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
+    private PlayerStats playerStats;
     public int Health;
     public int AttackPower;
-    public int Mana;
+    public int MaxMana;
+    public int CurrentMana;
+    public int ManaGain;
 
-    public Enemy(int health, int attackPower, int mana){
+    public void RunTurn(){
+
+        CurrentMana += ManaGain;
+
+        if(CurrentMana >= MaxMana)
+        {
+            UseAbility();
+        }
+    }
+
+    public void Initialize(int health, int attackPower, int mana, int manaGain){
         
         Health = health;
 
         AttackPower = attackPower;
 
-        Mana = mana;
+        MaxMana = mana;
+
+        ManaGain = manaGain;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void UseAbility()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerStats.AlterHealth(AttackPower);
     }
 }

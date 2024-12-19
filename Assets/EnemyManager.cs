@@ -26,8 +26,19 @@ public class EnemyManager : MonoBehaviour
     {
         GameObject NewEnemy = Instantiate(SecurityGuard, SpawnPoint.position, SpawnPoint.rotation);
 
-        NewEnemy.GetComponent<Enemy>();
+        NewEnemy.GetComponent<Enemy>().Initialize(100, -10, 10, 5);
 
+        CurrentEnemyList.Add(NewEnemy);
+    }
+
+    void EnemyTurns()
+    {
+        foreach(GameObject gameObject in CurrentEnemyList){
+            gameObject.GetComponent<Enemy>().RunTurn();
+        }
 
     }
+
 }
+
+
