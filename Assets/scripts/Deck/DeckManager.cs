@@ -5,19 +5,23 @@ using System;
 public class DeckManager : MonoBehaviour
 {
 
+    public object[] cards;
     public Dictionary<string, int> symbolOdds = new Dictionary<string, int>
     {
-        { "Ten", 22 },
-        { "Jack", 20 },
-        { "Queen", 18 },
-        { "King", 18 },
-        { "Ace", 15 },
-        { "Scatter", 7 }
+        { "tenImage", 22 },
+        { "jackImage", 20 },
+        { "queenImage", 18 },
+        { "kingImage", 18 },
+        { "aceImage", 15 },
+        { "scatterImage", 7 },
+        { "wildcardImage", 0},
+        { "uniqueImage", 0}
     };
     private System.Random random = new System.Random();
 
     void Start()
     {
+        cards = Resources.LoadAll("Cards", typeof(Card));
         RefreshOdds();
     }
 
@@ -25,16 +29,18 @@ public class DeckManager : MonoBehaviour
     {
         symbolOdds = new Dictionary<string, int>
         {
-            { "Ten", 22 },
-            { "Jack", 20 },
-            { "Queen", 18 },
-            { "King", 18 },
-            { "Ace", 15 },
-            { "Scatter", 7 }
+            { "tenImage", 22 },
+            { "jackImage", 20 },
+            { "queenImage", 18 },
+            { "kingImage", 18 },
+            { "aceImage", 15 },
+            { "scatterImage", 7 },
+            { "wildcardImage", 0},
+            { "uniqueImage", 0}
         };
     }
 
-    public string GetRandomIcon()
+    public Card  GetRandomIcon()
     {
         List<KeyValuePair<string
         , int>> cumulativeOdds = new List<KeyValuePair<string, int>>();
@@ -52,12 +58,25 @@ public class DeckManager : MonoBehaviour
         {
             if (randomNumber <= symbol.Value)
             {
-                return symbol.Key;
+                return GetCardByName(symbol.Key);
             }
         }
 
-        return null;
+        return GetCardByName("tenImage");
     }
+
+    public Card GetCardByName(string name)
+    {
+        foreach (var card in cards)
+        {
+            if (card is Card cardObject && cardObject.ImageString == name)
+            {
+                return cardObject;
+            }
+        }
+        return null; // Return null if no match is found
+    }
+
 
     public void AdjustOdds(string cardName, int increaseAmount)
     {

@@ -37,11 +37,10 @@ public class Reel : MonoBehaviour
 
 	public void RandomizeReel()
 	{
+		Debug.Log(deckManager.GetRandomIcon());
 		for (int i = 0; i < positionsInReel.Count; i++)
 		{
-			int cardIndex = Random.Range(0, deckManager.rollingDeck.Count);
-			positionsInReel[i].card = deckManager.rollingDeck[cardIndex];
-			deckManager.RemoveCardFromRoll(cardIndex);
+			positionsInReel[i].card = deckManager.GetRandomIcon();
 		}
 	}
 	public void EnableReel()
