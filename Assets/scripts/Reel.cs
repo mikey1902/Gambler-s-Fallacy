@@ -4,6 +4,7 @@ using UnityEngine;
 public class Reel : MonoBehaviour
 {
 	public List<Position> positionsInReel = new List<Position>();
+	public List<Card> cardsInReel = new List<Card>();
 	public bool spin;
 	public int speed = 1500;
 	public DeckManager deckManager;
@@ -37,11 +38,29 @@ public class Reel : MonoBehaviour
 
 	public void RandomizeReel()
 	{
+		//randomizes icons the the reels
 		Debug.Log(deckManager.GetRandomIcon());
 		for (int i = 0; i < positionsInReel.Count; i++)
 		{
 			positionsInReel[i].card = deckManager.GetRandomIcon();
 		}
+		//saves the icons to list
+		foreach (Position position in positionsInReel)
+		{
+			cardsInReel.Add(position.card);
+		}
+	}
+	public int CheckSymbolInReel(Card card)
+	{
+		int numOfSymbol = 0;
+		foreach(Card cardInReel in cardsInReel)
+		{
+			if(cardInReel == card)
+			{
+				numOfSymbol += 1;
+			}
+		}
+		return numOfSymbol;
 	}
 	public void EnableReel()
 	{

@@ -5,6 +5,12 @@ public class Position : MonoBehaviour
 {
 	public Card card;
 	public TMP_Text positionText;
+	private CardManager cardManager;
+
+	void Start()
+	{
+		cardManager = GameManager.Instance.cardManager;
+	}
 
 	private void Update()
 	{
@@ -13,4 +19,9 @@ public class Position : MonoBehaviour
 			positionText.text = card.ImageString[0].ToString();
 		}
 	}
+
+	//public void AddBehaviour()
+	//{
+		//cardManager.Add<CardBehaviour>(card.actionType);
+	//}
 }
