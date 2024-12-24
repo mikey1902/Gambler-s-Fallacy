@@ -12,8 +12,10 @@ public class Card : ScriptableObject
 
     public enum ActionType
     {
-        Attack,
-        Defense,
-        Utility,
+        ATTACK,
+        BLOCK,
+        BLEED,
+        POISON
     }
 }
+

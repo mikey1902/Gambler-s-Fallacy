@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4353613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4353614}
+  - component: {fileID: 4353615}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4353614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1635111314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4353615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2ce2c898ab23e469fada9494a93fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &10805702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,9 +584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b445f94137e9e10488fe72e67484ae08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reels:
-  - {fileID: 493968920}
+  spinningReels:
   - {fileID: 256761541}
+  - {fileID: 493968920}
   - {fileID: 1642546948}
   resultReels:
   - {fileID: 562111955}
@@ -583,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -989,6 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -1111,8 +1157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27faf27eca49cb7408a028ce912717d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staticDeck: []
-  rollingDeck: []
 --- !u!1 &493968918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -1622,6 +1667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -3692,6 +3738,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5136137071676708513, guid: b539dfa28c226f14b80f82720b2f60e1, type: 3}
   m_PrefabInstance: {fileID: 1613532145}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1635111312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635111314}
+  - component: {fileID: 1635111313}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1635111313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635111312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b3dadd4f29fa3409faf217aab4f5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1635111314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635111312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 874.56836, y: 525.10974, z: 0.2644263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4353614}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1642357098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3839,6 +3930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -4399,6 +4491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionsInReel: []
+  cardsInReel: []
   spin: 0
   speed: 1500
   deckManager: {fileID: 0}
@@ -4685,3 +4778,4 @@ SceneRoots:
   - {fileID: 1430513588}
   - {fileID: 281435908}
   - {fileID: 485092356}
+  - {fileID: 1635111314}
