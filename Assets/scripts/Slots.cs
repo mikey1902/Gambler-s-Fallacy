@@ -10,7 +10,6 @@ public class Slots : MonoBehaviour
     public InputActionReference spin;
     bool startSpin;
 	public DeckManager deckManager;
-
     private void Start()
     { 
 		deckManager = FindFirstObjectByType<DeckManager>();

@@ -371,7 +371,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   AttackPower: 0
-  Mana: 0
+  MaxMana: 0
+  CurrentMana: 0
+  ManaGain: 0
+  spin: {fileID: -3658040985915147452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &6319287600949541047
 GameObject:
   m_ObjectHideFlags: 0

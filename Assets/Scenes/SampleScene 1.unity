@@ -277,8 +277,10 @@ MonoBehaviour:
   - {fileID: 493968920}
   - {fileID: 256761541}
   - {fileID: 1642546948}
+  resultReels: []
   slotGrid: []
   spin: {fileID: -2063396545380377467, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  deckManager: {fileID: 0}
 --- !u!1 &107675430
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +422,7 @@ MonoBehaviour:
   positionsInReel: []
   spin: 0
   speed: 1500
+  deckManager: {fileID: 0}
 --- !u!114 &256761542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,8 +922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27faf27eca49cb7408a028ce912717d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staticDeck: []
-  rollingDeck: []
 --- !u!1 &493968918
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +982,7 @@ MonoBehaviour:
   positionsInReel: []
   spin: 0
   speed: 1500
+  deckManager: {fileID: 0}
 --- !u!114 &493968921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,8 +2256,8 @@ Canvas:
   m_GameObject: {fileID: 1430513584}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2401,6 +2403,7 @@ MonoBehaviour:
   positionsInReel: []
   spin: 0
   speed: 1500
+  deckManager: {fileID: 0}
 --- !u!114 &1642546949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2639,7 +2642,7 @@ GameObject:
   - component: {fileID: 1948959065}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2657,6 +2660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentEnemyList: []
+  floorManager: {fileID: 0}
   SecurityGuard: {fileID: 5803077592313028699, guid: f4b078e84c412bb409e55096ac1be1e3, type: 3}
   SpawnPoint: {fileID: 217949058}
 --- !u!4 &1948959066
@@ -2686,7 +2690,7 @@ GameObject:
   - component: {fileID: 2008643511}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2703,8 +2707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be0f7ed9a401504f85174c25816ba89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  MaxHealth: 0
+  currentHealth: 100
+  MaxHealth: 100
+  enemyList: {fileID: 1948959065}
 --- !u!4 &2008643512
 Transform:
   m_ObjectHideFlags: 0

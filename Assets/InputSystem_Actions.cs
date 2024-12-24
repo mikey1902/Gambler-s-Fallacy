@@ -35,6 +35,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TestAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""77ace3ba-705a-4cf0-9b6f-a92d5f2f9859"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""SpinSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7e6d734-21a4-4e1f-b6cf-0d094bb31c5b"",
+                    ""path"": ""<Keyboard>/#(R)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""TestAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -118,6 +138,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_SpinSlot = m_Player.FindAction("SpinSlot", throwIfNotFound: true);
+        m_Player_TestAction = m_Player.FindAction("TestAction", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -185,11 +206,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_SpinSlot;
+    private readonly InputAction m_Player_TestAction;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
         public PlayerActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
         public InputAction @SpinSlot => m_Wrapper.m_Player_SpinSlot;
+        public InputAction @TestAction => m_Wrapper.m_Player_TestAction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -202,6 +225,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SpinSlot.started += instance.OnSpinSlot;
             @SpinSlot.performed += instance.OnSpinSlot;
             @SpinSlot.canceled += instance.OnSpinSlot;
+            @TestAction.started += instance.OnTestAction;
+            @TestAction.performed += instance.OnTestAction;
+            @TestAction.canceled += instance.OnTestAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -209,6 +235,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SpinSlot.started -= instance.OnSpinSlot;
             @SpinSlot.performed -= instance.OnSpinSlot;
             @SpinSlot.canceled -= instance.OnSpinSlot;
+            @TestAction.started -= instance.OnTestAction;
+            @TestAction.performed -= instance.OnTestAction;
+            @TestAction.canceled -= instance.OnTestAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -274,5 +303,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnSpinSlot(InputAction.CallbackContext context);
+        void OnTestAction(InputAction.CallbackContext context);
     }
 }

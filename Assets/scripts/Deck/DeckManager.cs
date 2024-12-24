@@ -17,6 +17,7 @@ public class DeckManager : MonoBehaviour
         { "wildcardImage", 0},
         { "uniqueImage", 0}
     };
+    
     private System.Random random = new System.Random();
 
     void Start()
@@ -110,6 +111,7 @@ public class DeckManager : MonoBehaviour
         }
         LogSymbolOdds();
     }
+
     public void LogSymbolOdds()
     {
         Debug.Log("Symbol Odds:");

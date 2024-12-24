@@ -5,7 +5,7 @@ public class EnemyManager : MonoBehaviour
 {
 
     public List<GameObject> CurrentEnemyList = new List<GameObject>();
-
+    public FloorManager floorManager;
     public GameObject SecurityGuard;
 
     public Transform SpawnPoint;
@@ -19,14 +19,13 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         
-
     }
 
     void SpawnEnemy()
     {
         GameObject NewEnemy = Instantiate(SecurityGuard, SpawnPoint.position, SpawnPoint.rotation);
 
-        NewEnemy.GetComponent<Enemy>().Initialize(100, -10, 10, 5);
+        NewEnemy.GetComponent<Enemy>().Initialize(100, -10, 10, 5, this.gameObject);
 
         CurrentEnemyList.Add(NewEnemy);
     }
@@ -37,6 +36,20 @@ public class EnemyManager : MonoBehaviour
             gameObject.GetComponent<Enemy>().RunTurn();
         }
 
+        if(CurrentEnemyList.Count == 0){
+            floorManager.UpdateBattleInt();
+            LoadNewEnemies();
+
+        }
+        
+    }
+
+    void LoadNewEnemies()
+    {
+
+        if(floorManager.canLoadNewEnemies()){
+            //spawn new enemies or something
+        }
     }
 
 }
