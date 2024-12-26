@@ -8,13 +8,7 @@ public class Slots : MonoBehaviour
 	public Reel[] spinningReels;
 	public Reel[] resultReels;
 	public GameObject[] slotGrid;
-<<<<<<< HEAD
-    public InputActionReference spin;
-    bool startSpin;
-	public DeckManager deckManager;
-    private void Start()
-    { 
-=======
+
 	public InputActionReference spin;
 	bool startSpin;
 	private DeckManager deckManager;
@@ -22,7 +16,6 @@ public class Slots : MonoBehaviour
 
 	private void Start()
 	{
->>>>>>> 26ed2a3e02ee2c41958dad59fddc6417f9646972
 		deckManager = FindFirstObjectByType<DeckManager>();
 		cardManager = GameManager.Instance.cardManager;
 		startSpin = false;
