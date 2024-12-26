@@ -6,7 +6,7 @@ public class Reel : MonoBehaviour
 	public List<Position> positionsInReel = new List<Position>();
 	public List<Card> cardsInReel = new List<Card>();
 	public bool spin;
-	public int speed = 1500;
+	public int speed = 4000;
 	public DeckManager deckManager;
 
 	void Start()
@@ -20,7 +20,7 @@ public class Reel : MonoBehaviour
 		}
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		if (spin)
 		{
@@ -30,7 +30,7 @@ public class Reel : MonoBehaviour
 
 				if (img.transform.position.y <= 0)
 				{
-					img.transform.position = new Vector2(img.transform.position.x, img.transform.position.y + 600);
+					img.transform.position = new Vector2(img.transform.position.x, img.transform.position.y + 800);
 				}
 			}
 		}
