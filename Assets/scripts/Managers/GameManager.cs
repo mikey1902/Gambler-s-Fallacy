@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 {
 	public GameState gameState;
 	public static GameManager Instance { get; private set; }
-	public CardManager cardManager { get; private set; }
+	public CardManager CardManager { get; private set; }
+	public EnemyManager EnemyManager { get; private set; }
 
 	private void Awake()
 	{
@@ -30,15 +31,26 @@ public class GameManager : MonoBehaviour
 	}
 	private void InitializeManagers()
 	{
-		cardManager = GetComponentInChildren<CardManager>();
-		if (cardManager == null)
+		CardManager = GetComponentInChildren<CardManager>();
+		if (CardManager == null)
 		{
 			GameObject prefab = Resources.Load<GameObject>("Prefabs/CardManager");
 			if (prefab == null) { Debug.Log($"CardManager prefab not found"); }
 			else
 			{
 				Instantiate(prefab, transform.position, Quaternion.identity, transform);
-				cardManager = GetComponentInChildren<CardManager>();
+				CardManager = GetComponentInChildren<CardManager>();
+			}
+		}
+		EnemyManager = GetComponentInChildren<EnemyManager>();
+		if (CardManager == null)
+		{
+			GameObject prefab = Resources.Load<GameObject>("Prefabs/EnemyManager");
+			if (prefab == null) { Debug.Log($"EnemyManager prefab not found"); }
+			else
+			{
+				Instantiate(prefab, transform.position, Quaternion.identity, transform);
+				EnemyManager = GetComponentInChildren<EnemyManager>();
 			}
 		}
 	}
@@ -59,5 +71,7 @@ public class GameManager : MonoBehaviour
 	public void StartEnemyTurn()
 	{
 		gameState = GameState.ENEMY;
+		EnemyManager.EnemyTurns();
+		Debug.Log("Enemy Turn Start");
 	}
 }

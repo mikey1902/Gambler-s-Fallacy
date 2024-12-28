@@ -17,7 +17,7 @@ public class Slots : MonoBehaviour
 	private void Start()
 	{
 		deckManager = FindFirstObjectByType<DeckManager>();
-		cardManager = GameManager.Instance.cardManager;
+		cardManager = GameManager.Instance.CardManager;
 		startSpin = false;
 	}
 
@@ -37,6 +37,7 @@ public class Slots : MonoBehaviour
 
 	IEnumerator Spinning()
 	{
+		GenerateResult();
 		startSpin = true;
 
 		foreach (Reel reel in spinningReels)
@@ -49,14 +50,12 @@ public class Slots : MonoBehaviour
 		{
 			yield return new WaitForSeconds(Random.Range(1, 3));
 			spinningReels[i].spin = false;
-		}
-		foreach (Reel reel in spinningReels)
-		{
-			reel.DisableReel();
+			spinningReels[i].DisableReel();
 		}
 		startSpin = false;
-		GenerateResult();
 		ResultCheck();
+		//Ends the player's turn
+		GameManager.Instance.StartEnemyTurn();
 	}
 	private void GenerateResult()
 	{
@@ -97,5 +96,7 @@ public class Slots : MonoBehaviour
 				cardManager.ApplyBehaviour(symbolsFound, symbolsFound.actionType, symbolTotal);
 			}
 		}
+		// ADD A CLEAR LIST DUMBASS
+		checkedCards.Clear();
 	}
 }

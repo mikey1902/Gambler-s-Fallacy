@@ -9,14 +9,14 @@ public class Position : MonoBehaviour
 
 	void Start()
 	{
-		cardManager = GameManager.Instance.cardManager;
+		cardManager = GameManager.Instance.CardManager;
 	}
 
 	private void Update()
 	{
 		if (card != null)
 		{
-			positionText.text = card.ImageString[0].ToString();
+			positionText.text = card.ImageString[0].ToString().ToUpper();
 		}
 	}
 

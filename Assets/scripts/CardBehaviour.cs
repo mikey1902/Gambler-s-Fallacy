@@ -10,9 +10,13 @@ public abstract class CardBehaviour : MonoBehaviour
 
 class Attack : CardBehaviour
 {
+	private EnemyManager enemyManager;
 	public override void CardEffect(Card card, int numOfSymbol)
 	{
 		Debug.Log("number of " + card.ImageString + " symbols= " + numOfSymbol);
+		enemyManager = GameManager.Instance.EnemyManager;
+
+		enemyManager.CurrentEnemyList[0].GetComponent<Enemy>().takeDamage(card.value * numOfSymbol);
 	}
 }class Block : CardBehaviour
 {
